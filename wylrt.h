@@ -15,4 +15,18 @@ typedef struct {
   uint64_t  segsize;
 } wylrterror;
 
+typedef int8_t      wyland_bool;
+typedef int32_t     wyland_int;
+typedef int64_t     wyland_long;
+typedef uint32_t    wyland_uint;
+typedef uint64_t    wyland_ulong;
+
+static const wyland_bool wyland_true = 1;
+static const wyland_bool wyland_flase = 0;
+
+wyland_bool wyland_runtime_init() {
+
+  return 1;
+}
+
 #endif // __WYLAND_RUNTIME_LIB__
