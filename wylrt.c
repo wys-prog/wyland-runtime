@@ -67,3 +67,78 @@ wyland_int wyland_flags_extract_int(wyland_flags *flags) {
 
   return -1;
 }
+
+wyland_uint wyland_flags_extract_uint(wyland_flags *flags) {
+  if (flags->fmt[flags->pos] == 'u') {
+    if (flags->pos + 1 >= flags->len) {
+      wylrterror error = wyland_make_error(
+        "wyland_flags_extract_uint(wyland_flags *)", 
+        "out of range", "reading an unsigned integer, but index is out of range", 
+        0, NULL, NULL, 0, 0
+      );
+      wyland_throw(&error);
+    }
+
+    return *(wyland_uint*)flags->objects[flags->pos++];
+  }
+
+  wylrterror error = wyland_make_error(
+    "wyland_flags_extract_uint(wyland_flags *)", 
+    "invalid type convertion", "not an uint (wyland_uint)", 
+    0, NULL, NULL, 0, 0
+  );
+
+  wyland_throw(&error);
+
+  return -1;
+}
+
+wyland_long wyland_flags_extract_long(wyland_flags *flags) {
+  if (flags->fmt[flags->pos] == 'l') {
+    if (flags->pos + 1 >= flags->len) {
+      wylrterror error = wyland_make_error(
+        "wyland_flags_extract_long(wyland_flags *)", 
+        "out of range", "reading a long, but index is out of range", 
+        0, NULL, NULL, 0, 0
+      );
+      wyland_throw(&error);
+    }
+
+    return *(wyland_long*)flags->objects[flags->pos++];
+  }
+
+  wylrterror error = wyland_make_error(
+    "wyland_flags_extract_long(wyland_flags *)", 
+    "invalid type convertion", "not a long (wyland_long)", 
+    0, NULL, NULL, 0, 0
+  );
+
+  wyland_throw(&error);
+
+  return -1;
+}
+
+wyland_ulong wyland_flags_extract_ulong(wyland_flags *flags) {
+  if (flags->fmt[flags->pos] == 'U') {
+    if (flags->pos + 1 >= flags->len) {
+      wylrterror error = wyland_make_error(
+        "wyland_flags_extract_ulong(wyland_flags *)", 
+        "out of range", "reading an unsigned long, but index is out of range", 
+        0, NULL, NULL, 0, 0
+      );
+      wyland_throw(&error);
+    }
+
+    return *(wyland_ulong*)flags->objects[flags->pos++];
+  }
+
+  wylrterror error = wyland_make_error(
+    "wyland_flags_extract_ulong(wyland_flags *)", 
+    "invalid type convertion", "not an unsigned long (wyland_ulong)", 
+    0, NULL, NULL, 0, 0
+  );
+
+  wyland_throw(&error);
+
+  return -1;
+}
