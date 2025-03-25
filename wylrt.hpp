@@ -33,6 +33,10 @@ namespace wylma {
           object->segsize = segmsize;
         }
 
+        wyland_runtime_error(const wylrterror &error) {
+          object = new wylrterror(error);
+        }
+
         // Copy constructor
         wyland_runtime_error(const wyland_runtime_error &other) {
           object = new wylrterror(*other.object);

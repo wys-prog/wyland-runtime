@@ -2,6 +2,7 @@
 #define __WYLAND_RUNTIME_LIB__
 
 #include <stdint.h>
+#include <string.h>
 
 typedef struct {
   char    *what;
@@ -21,12 +22,34 @@ typedef int64_t     wyland_long;
 typedef uint32_t    wyland_uint;
 typedef uint64_t    wyland_ulong;
 
+typedef struct {
+  void        **objects;
+  char        *fmt;
+  wyland_uint  len;
+  wyland_uint  pos;
+} wyland_flags;
+
+typedef wyland_int(*wyland_callable)(wyland_flags*);
+
 static const wyland_bool wyland_true = 1;
-static const wyland_bool wyland_flase = 0;
+static const wyland_bool wyland_false = 0;
 
-wyland_bool wyland_runtime_init() {
+#ifdef __cplusplus
+extern "C" {
+#endif // C++
 
-  return 1;
+void wyland_throw(const wylrterror *error);
+
+wylrterror wyland_make_error(const char*, const char*, const char*, uint64_t, uint64_t*, uint64_t*, uint64_t, uint64_t);
+
+wyland_bool  wyland_flags_extract_bool(wyland_flags*);
+wyland_int   wyland_flags_extract_int(wyland_flags*);
+wyland_uint  wyland_flags_extract_uint(wyland_flags*);
+wyland_long  wyland_flags_extract_long(wyland_flags*);
+wyland_ulong wyland_flags_extract_ulong(wyland_flags*);
+
+  
+#ifdef __cplusplus
 }
-
+#endif // C++
 #endif // __WYLAND_RUNTIME_LIB__
