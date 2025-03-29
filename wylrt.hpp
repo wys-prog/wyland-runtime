@@ -22,10 +22,10 @@ namespace wylma {
         wyland_runtime_error(const char *what, const char *name, const char *caller, const char *exception_type,
                              uint64_t ip, uint64_t thread, uint64_t *segmbeg, uint64_t *segmend, uint64_t segmsize) {
           object = new wylrterror;
-          object->what = (char*)what;
-          object->name = (char*)name;
-          object->caller = (char*)caller;
-          object->exception_type = (char*)exception_type;
+          object->what = strdup(what);
+          object->name = strdup(name);
+          object->caller = strdup(caller);
+          object->exception_type = strdup(exception_type);
           object->ip = ip;
           object->thread = thread;
           object->segmbeg = segmbeg;
