@@ -111,7 +111,8 @@ namespace wylma {
         std::string fmterr(const char *on_new_line = "") const {
           std::stringstream ss;
 
-          ss << name() << ": " << what() << "\n" << on_new_line 
+          ss << name() << ": '" << what() << "'\n" << on_new_line 
+             << "type:\t" << exception_name() << "\n" << on_new_line
              << "from:\t" << caller() << "\n" << on_new_line 
              << "ip:  \t" << std::hex << ip() << "\n" << on_new_line 
              << "flags:\tbeg(" << std::hex << reinterpret_cast<uintptr_t>(segmbeg()) << "), end(" << reinterpret_cast<uintptr_t>(segmend()) << ")\n" << on_new_line 

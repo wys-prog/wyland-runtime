@@ -21,6 +21,8 @@ typedef int32_t     wyland_int;
 typedef int64_t     wyland_long;
 typedef uint32_t    wyland_uint;
 typedef uint64_t    wyland_ulong;
+typedef int8_t      wyland_char;
+typedef uint8_t     wyland_uchar;
 
 typedef struct {
   void        **objects;

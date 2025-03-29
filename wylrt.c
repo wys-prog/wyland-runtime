@@ -142,3 +142,53 @@ wyland_ulong wyland_flags_extract_ulong(wyland_flags *flags) {
 
   return -1;
 }
+
+wyland_char wyland_flags_extract_char(wyland_flags *flags) {
+  if (flags->fmt[flags->pos] == 'c') {
+    if (flags->pos + 1 >= flags->len) {
+      wylrterror error = wyland_make_error(
+        "wyland_flags_extract_char(wyland_flags *)", 
+        "out of range", "reading an unsigned long, but index is out of range", 
+        0, NULL, NULL, 0, 0
+      );
+      wyland_throw(&error);
+    }
+
+    return *(wyland_char*)flags->objects[flags->pos++];
+  }
+
+  wylrterror error = wyland_make_error(
+    "wyland_flags_extract_char(wyland_flags *)", 
+    "invalid type convertion", "not an unsigned long (wyland_ulong)", 
+    0, NULL, NULL, 0, 0
+  );
+
+  wyland_throw(&error);
+
+  return -1;
+}
+
+wyland_uchar wyland_flags_extract_uchar(wyland_flags *flags) {
+  if (flags->fmt[flags->pos] == 'C') {
+    if (flags->pos + 1 >= flags->len) {
+      wylrterror error = wyland_make_error(
+        "wyland_flags_extract_uchar(wyland_flags *)", 
+        "out of range", "reading an unsigned long, but index is out of range", 
+        0, NULL, NULL, 0, 0
+      );
+      wyland_throw(&error);
+    }
+
+    return *(wyland_uchar*)flags->objects[flags->pos++];
+  }
+
+  wylrterror error = wyland_make_error(
+    "wyland_flags_extract_uchar(wyland_flags *)", 
+    "invalid type convertion", "not an unsigned long (wyland_ulong)", 
+    0, NULL, NULL, 0, 0
+  );
+
+  wyland_throw(&error);
+
+  return -1;
+}
