@@ -49,8 +49,9 @@ wyland_int   wyland_flags_extract_int(wyland_flags*);
 wyland_uint  wyland_flags_extract_uint(wyland_flags*);
 wyland_long  wyland_flags_extract_long(wyland_flags*);
 wyland_ulong wyland_flags_extract_ulong(wyland_flags*);
+wyland_char  wyland_flags_extract_char(wyland_flags*);
+wyland_uchar wyland_flags_extract_uchar(wyland_flags*);
 
-  
 #ifdef __cplusplus
 }
 #endif // C++
