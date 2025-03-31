@@ -25,6 +25,13 @@ typedef int8_t      wyland_char;
 typedef uint8_t     wyland_uchar;
 
 typedef struct {
+  uint8_t  (*r8)[16];  
+  uint16_t (*r16)[16];  
+  uint32_t (*r32)[16];  
+  uint64_t (*r64)[32];
+} wyland_registers;
+
+typedef struct {
   void        **objects;
   char        *fmt;
   wyland_uint  len;
