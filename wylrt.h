@@ -32,6 +32,17 @@ typedef struct {
 } wyland_registers;
 
 typedef struct {
+  wyland_uchar     *segstart;
+  wyland_uint       seglen; /* Use 32bits since 512MB is under 32 bits's max. */
+  wyland_uchar     *keyboardstart;
+  wyland_registers *regspointer;
+} arg_t;
+
+#define wyland_func(name) void name(arg_t *flags)
+#define wyland_extern(name) extern wyland_func(name)
+#define wyland_extern_cpp(name) extern "C" wyland_func(name)
+
+typedef struct {
   void        **objects;
   char        *fmt;
   wyland_uint  len;
