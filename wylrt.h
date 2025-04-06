@@ -48,6 +48,8 @@ typedef struct {
   wyland_registers *regspointer;
   wyland_ulong      ip;
   wyland_ulong      thread;
+  wyland_uchar     *memory_start; /* Use it only with SYSTEM privileges. */
+  wyland_bool       is_system;
 } arg_t;
 
 #define wyland_func(name, flags) void name(arg_t *flags)
