@@ -4,13 +4,15 @@
 #include <stdint.h>
 #include <string.h>
 
+#define WYLAND_NULL 0
+
 typedef struct {
-  char    *what;
-  char    *name;
-  char    *caller;
-  char    *exception_type;
-  uint64_t ip;
-  uint64_t thread;
+  char     *what;
+  char     *name;
+  char     *caller;
+  char     *exception_type;
+  uint64_t  ip;
+  uint64_t  thread;
   uint64_t *segmbeg;
   uint64_t *segmend;
   uint64_t  segsize;
@@ -24,6 +26,14 @@ typedef uint64_t    wyland_ulong;
 typedef int8_t      wyland_char;
 typedef uint8_t     wyland_uchar;
 
+typedef int8_t      wbool;
+typedef int32_t     wint;
+typedef int64_t     wlong;
+typedef uint32_t    wuint;
+typedef uint64_t    wulong;
+typedef int8_t      wchar;
+typedef uint8_t     wuchar;
+
 typedef struct {
   uint8_t  (*r8)[16];  
   uint16_t (*r16)[16];  
@@ -36,11 +46,13 @@ typedef struct {
   wyland_uint       seglen; /* Use 32bits since 512MB is under 32 bits's max. */
   wyland_uchar     *keyboardstart;
   wyland_registers *regspointer;
+  wyland_ulong      ip;
+  wyland_ulong      thread;
 } arg_t;
 
-#define wyland_func(name) void name(arg_t *flags)
-#define wyland_extern(name) extern wyland_func(name)
-#define wyland_extern_cpp(name) extern "C" wyland_func(name)
+#define wyland_func(name, flags) void name(arg_t *flags)
+#define wyland_extern(name, flags) extern wyland_func(name, flags)
+#define wyland_extern_cpp(name, flags) extern "C" wyland_func(name, flags)
 
 typedef struct {
   void        **objects;
@@ -60,7 +72,7 @@ extern "C" {
 
 void wyland_throw(const wylrterror *error);
 
-wylrterror wyland_make_error(const char*, const char*, const char*, uint64_t, uint64_t*, uint64_t*, uint64_t, uint64_t);
+wylrterror wyland_make_error(const char*c, const char*n, const char*w, uint64_t ip, uint64_t*sb, uint64_t*se, uint64_t ss, uint64_t t);
 
 wyland_bool  wyland_flags_extract_bool(wyland_flags*);
 wyland_int   wyland_flags_extract_int(wyland_flags*);
