@@ -25,6 +25,7 @@ typedef uint32_t    wyland_uint;
 typedef uint64_t    wyland_ulong;
 typedef int8_t      wyland_char;
 typedef uint8_t     wyland_uchar;
+typedef void*       wyland_ptr;
 
 typedef int8_t      wbool;
 typedef int32_t     wint;
@@ -33,6 +34,7 @@ typedef uint32_t    wuint;
 typedef uint64_t    wulong;
 typedef int8_t      wchar;
 typedef uint8_t     wuchar;
+typedef void*       wptr;
 
 typedef struct {
   uint8_t  (*r8)[16];  

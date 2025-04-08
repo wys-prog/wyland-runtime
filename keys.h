@@ -1,3 +1,6 @@
+#ifndef ___WYLAND_BUILT_IN_RUNTIME_KEYS___
+#define ___WYLAND_BUILT_IN_RUNTIME_KEYS___
+
 #include <stdio.h>
 #include <stdint.h>
 
@@ -60,3 +63,5 @@
         return (ch != EOF) ? ch : 0;
     }
 #endif
+
+#endif // ___WYLAND_BUILT_IN_RUNTIME_KEYS___
