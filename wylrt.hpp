@@ -156,6 +156,18 @@ namespace wylma {
                                          uint64_t ip, uint64_t thread, uint64_t *segmbeg, uint64_t *segmend, uint64_t segmsize)
           : wyland_runtime_error(what, name, caller, typeid(this).name(), ip, thread, segmbeg, segmend, segmsize) {}
       };
+
+      class wyland_overflow_exception : public wyland_runtime_error {
+        wyland_overflow_exception(const char *what, const char *name, const char *caller,
+          uint64_t ip, uint64_t thread, uint64_t *segmbeg, uint64_t *segmend, uint64_t segmsize)
+          : wyland_runtime_error(what, name, caller, typeid(this).name(), ip, thread, segmbeg, segmend, segmsize) {}
+      };
+
+      class wyland_underflow_exception : public wyland_runtime_error {
+        wyland_underflow_exception(const char *what, const char *name, const char *caller,
+          uint64_t ip, uint64_t thread, uint64_t *segmbeg, uint64_t *segmend, uint64_t segmsize)
+          : wyland_runtime_error(what, name, caller, typeid(this).name(), ip, thread, segmbeg, segmend, segmsize) {}
+      };
     }
   }
 }
