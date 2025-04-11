@@ -58,6 +58,12 @@ typedef struct {
 #define wyland_extern(name, flags) extern wyland_func(name, flags)
 #define wyland_extern_cpp(name, flags) extern "C" wyland_func(name, flags)
 
+#define wyland_module_init() wbool Einit()
+#define wyland_module_shutdown() void Eshutdown()
+#define wyland_module_name() const char *Ename()
+#define wyland_module_send(data) void Esend_data(wulong data) 
+#define wyland_module_receive() wulong Ereceive_data()
+
 typedef struct {
   void        **objects;
   char        *fmt;
