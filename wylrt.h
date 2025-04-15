@@ -26,6 +26,7 @@ typedef uint64_t    wyland_ulong;
 typedef int8_t      wyland_char;
 typedef uint8_t     wyland_uchar;
 typedef void*       wyland_ptr;
+typedef uint8_t     wyland_byte;
 
 typedef int8_t      wbool;
 typedef int32_t     wint;
@@ -35,6 +36,7 @@ typedef uint64_t    wulong;
 typedef int8_t      wchar;
 typedef uint8_t     wuchar;
 typedef void*       wptr;
+typedef uint8_t     wbyte;
 
 typedef struct {
   uint8_t  (*r8)[16];  
@@ -73,8 +75,10 @@ typedef struct {
 
 typedef wyland_int(*wyland_callable)(wyland_flags*);
 
-static const wyland_bool wyland_true = 1;
-static const wyland_bool wyland_false = 0;
+#define wyland_true  1
+#define wyland_false 0
+#define wyland_eof   (-1)
+#define weof         wyland_eof
 
 #ifdef __cplusplus
 extern "C" {
