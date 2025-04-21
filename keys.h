@@ -60,7 +60,7 @@
         tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
         fcntl(STDIN_FILENO, F_SETFL, oldf);
 
-        return (ch != EOF) ? ch : 0;
+        return (ch != (wuint)EOF) ? ch : 0;
     }
 #endif
 
