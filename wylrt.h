@@ -56,7 +56,7 @@ typedef struct {
   wyland_bool       is_system;
 } arg_t;
 
-#define wyland_func(name, flags) void name(arg_t *flags)
+#define wyland_func(name, flags) wint name(arg_t *flags)
 #define wyland_extern(name, flags) extern wyland_func(name, flags)
 #define wyland_extern_cpp(name, flags) extern "C" wyland_func(name, flags)
 
@@ -74,6 +74,7 @@ typedef struct {
 } wyland_flags;
 
 typedef wyland_int(*wyland_callable)(wyland_flags*);
+typedef void(*wyland_error_block)(const wylrterror*);
 
 #define wyland_true  1
 #define wyland_false 0
@@ -85,6 +86,7 @@ extern "C" {
 #endif // C++
 
 void wyland_throw(const wylrterror *error);
+wint wyland_try_callable(wyland_callable*, wyland_flags*, wyland_error_block*);
 
 wylrterror wyland_make_error(const char*c, const char*n, const char*w, uint64_t ip, uint64_t*sb, uint64_t*se, uint64_t ss, uint64_t t);
 
@@ -95,6 +97,8 @@ wyland_long  wyland_flags_extract_long(wyland_flags*);
 wyland_ulong wyland_flags_extract_ulong(wyland_flags*);
 wyland_char  wyland_flags_extract_char(wyland_flags*);
 wyland_uchar wyland_flags_extract_uchar(wyland_flags*);
+
+float        wyland_get_runtime_version(void);
 
 #ifdef __cplusplus
 }

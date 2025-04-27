@@ -14,6 +14,7 @@ wylrterror wyland_make_error(const char *caller, const char *name, const char *w
   error.segmbeg = segmbeg;
   error.segmend = segmend;
   error.segsize = segmsize;
+  error.thread = thread; 
   
   return error;
 }
@@ -191,4 +192,8 @@ wyland_uchar wyland_flags_extract_uchar(wyland_flags *flags) {
   wyland_throw(&error);
 
   return -1;
+}
+
+float  wyland_get_runtime_version(void) {
+  return 1.0004;
 }
