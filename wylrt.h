@@ -37,6 +37,8 @@ typedef int8_t      wchar;
 typedef uint8_t     wuchar;
 typedef void*       wptr;
 typedef uint8_t     wbyte;
+typedef uint64_t    wthptr; /* Wyland Thread Pointer */
+typedef uint64_t    wthid; /* Wyland Thread ID */
 
 typedef struct {
   uint8_t  (*r8)[16];  
