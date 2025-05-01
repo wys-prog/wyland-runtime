@@ -19,7 +19,7 @@ extern "C" {
       return result;
     } catch (const std::exception &e) {
       wylrterror error = wyland_make_error(
-        e.what(), "std::exception", "Standard exception occurred", 0, nullptr, nullptr, 0, 0);
+        e.what(), "std::exception", "C++ Standard exception occurred", 0, nullptr, nullptr, 0, 0);
       (*errblck)(&error);
     } catch (const wylma::wyland::runtime::wyland_runtime_error &e) {
       wylrterror error = wyland_make_error(

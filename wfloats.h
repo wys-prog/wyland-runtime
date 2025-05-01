@@ -101,4 +101,10 @@ static inline wfloat float_to_wfloat(float f) {
   return wf;
 }
 
+static inline char *wfloat_to_str(wfloat wf) {
+  static char buffer[32];
+  snprintf(buffer, sizeof(buffer), "%d.%04u", wf.integer, wf.floating);
+  return buffer;
+}
+
 #endif // ___WYLAND_FLOATS_H___

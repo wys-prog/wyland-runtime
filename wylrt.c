@@ -197,3 +197,21 @@ wyland_uchar wyland_flags_extract_uchar(wyland_flags *flags) {
 float  wyland_get_runtime_version(void) {
   return 1.0006;
 }
+
+const char *wyland_get_runtime_compiler(void) {
+#if defined(__clang__)
+  return "Clang";
+#elif defined(__GNUC__) || defined(__GNUG__)
+  return "GCC";
+#elif defined(_MSC_VER)
+  return "MSVC";
+#elif defined(__INTEL_COMPILER)
+  return "Intel ICC/ICPC";
+#elif defined(__EMSCRIPTEN__)
+  return "Emscripten";
+#elif defined(__MINGW32__) || defined(__MINGW64__)
+  return "MinGW";
+#else
+  return "Unknown compiler";
+#endif
+}

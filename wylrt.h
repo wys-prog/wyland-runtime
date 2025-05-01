@@ -101,6 +101,7 @@ wyland_char  wyland_flags_extract_char(wyland_flags*);
 wyland_uchar wyland_flags_extract_uchar(wyland_flags*);
 
 float        wyland_get_runtime_version(void);
+const char  *wyland_get_runtime_compiler(void);
 
 #ifdef __cplusplus
 }
