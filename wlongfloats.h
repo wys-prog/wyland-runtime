@@ -4,6 +4,10 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
+#include <math.h>
+
+#include "wylrt.h"
 
 #define WLONGFLOAT_MAX_PRECISION 1000000000ULL // Woaw
 
@@ -116,6 +120,26 @@ static inline char *longfloat_to_str(wlongfloat lf) {
   static char buffer[64];
   snprintf(buffer, sizeof(buffer), "%lld.%09llu", lf.integer, lf.floating);
   return buffer;
+}
+
+static inline wlongfloat str_to_longfloat(const char *str) {
+  wlongfloat wf = {0, 0};
+  if (str == NULL || strlen(str) == 0) {
+    return wf;
+  }
+
+  char *dot = (char*)strchr(str, '.');
+  if (dot) {
+    *dot = '\0'; // Temporarily split the string
+    wf.integer = (int64_t)atoll(str);
+    wf.floating = (uint64_t)(atoll(dot + 1) * WLONGFLOAT_MAX_PRECISION / (int)pow(10, strlen(dot + 1)));
+    *dot = '.'; // Restore the string
+  } else {
+    wf.integer = (int16_t)atoi(str);
+  }
+
+  longfloat_normalize(&wf);
+  return wf;
 }
 
 #endif // ___WLONGLFLOAT_H___

@@ -3,6 +3,8 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include <string.h>
+#include <math.h>
 
 #define WYLAND_FLOAT_MAX_PRECISION 10000
 
@@ -105,6 +107,26 @@ static inline char *wfloat_to_str(wfloat wf) {
   static char buffer[32];
   snprintf(buffer, sizeof(buffer), "%d.%04u", wf.integer, wf.floating);
   return buffer;
+}
+
+static inline wfloat str_to_wfloat(const char *str) {
+  wfloat wf = {0, 0};
+  if (str == NULL || strlen(str) == 0) {
+    return wf;
+  }
+
+  char *dot = (char*)strchr(str, '.');
+  if (dot) {
+    *dot = '\0'; // Temporarily split the string
+    wf.integer = (int16_t)atoi(str);
+    wf.floating = (uint16_t)(atoi(dot + 1) * WYLAND_FLOAT_MAX_PRECISION / (wint)pow(10, strlen(dot + 1)));
+    *dot = '.'; // Restore the string
+  } else {
+    wf.integer = (int16_t)atoi(str);
+  }
+
+  wfloat_normalize(&wf);
+  return wf;
 }
 
 #endif // ___WYLAND_FLOATS_H___
