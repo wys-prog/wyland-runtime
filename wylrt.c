@@ -195,7 +195,7 @@ wyland_uchar wyland_flags_extract_uchar(wyland_flags *flags) {
 }
 
 float  wyland_get_runtime_version(void) {
-  return 1.0006;
+  return 1.7;
 }
 
 const char *wyland_get_runtime_compiler(void) {

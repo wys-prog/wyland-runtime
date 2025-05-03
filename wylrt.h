@@ -67,6 +67,7 @@ typedef struct {
 #define wyland_module_name() const char *Ename()
 #define wyland_module_send(data) void Esend_data(wulong data) 
 #define wyland_module_receive() wulong Ereceive_data()
+#define wyland_module_get_stream() wulong Eget_stream()
 
 typedef struct {
   void        **objects;
