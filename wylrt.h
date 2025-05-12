@@ -51,6 +51,7 @@ typedef struct {
   uint16_t (*r16)[16];  
   uint32_t (*r32)[16];  
   uint64_t (*r64)[32];
+  __uint128_t (*r128)[32];
 } wyland_registers;
 
 typedef struct {
