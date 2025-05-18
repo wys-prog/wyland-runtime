@@ -56,7 +56,7 @@ typedef struct {
 
 typedef struct {
   wyland_uchar     *segstart;
-  wyland_uint       seglen; /* Use 32bits since 512MB is under 32 bits's max. */
+  wyland_ulong      seglen; /* Use 32bits since 512MB is under 32 bits's max. */
   wyland_uchar     *keyboardstart;
   wyland_registers *regspointer;
   wyland_ulong      ip;
