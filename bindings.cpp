@@ -36,7 +36,7 @@ extern "C" {
       (*errblck)(&error);
     } catch (const wylma::wyland::runtime::wyland_runtime_error &e) {
       wylrterror error = wyland_make_error(
-        e.what(), "wyland_runtime_error", "Wyland runtime error occurred", 0, nullptr, nullptr, 0, 0);
+        e.what().c_str(), "wyland_runtime_error", "Wyland runtime error occurred", 0, nullptr, nullptr, 0, 0);
       (*errblck)(&error);
     } catch (const wylrterror &e) {
         (*errblck)(&e);
